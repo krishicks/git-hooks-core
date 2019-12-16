@@ -25,36 +25,6 @@ Clone this repo to your directory of choice, e.g. $HOME/workspace/git-hooks-core
 git clone https://github.com/pivotal-cf/git-hooks-core $HOME/workspace/git-hooks-core
 ```
 
-This repo comes with some hooks by default that depend on `cred-alert-cli`. You can download this from the links [below](https://github.com/pivotal-cf/git-hooks-core/#cred-alert).
-
-### CUSTOMIZATION
-
-If you're a Pivotal team and you would like your own collection of hooks then
-please add a branch to this repository with the name `team/<team-name>`. For example,
-if I was on a security team I would push a branch to `team/pcf-security`. We originally
-wanted to have people fork this repository but that requires administrator access
-for the destination organization.
-
-If you use `sprout-git` to install this then you can use the `sprout.git.hooks.revision`
-attribute to set the branch you would like to use.
-
-### CRED-ALERT
-
-To install the `cred-alert-cli` binary download the version for your OS 
-([macOs][cred-alert-osx] or [Linux][cred-alert-linux]), rename it to `cred-alert-cli`,
-make it executable, and move it to a directory in `${PATH}`.
-
-```
-os_name=$(uname | awk '{print tolower($1)}')
-curl -o cred-alert-cli \
-  https://s3.amazonaws.com/cred-alert/cli/current-release/cred-alert-cli_${os_name}
-chmod 755 cred-alert-cli
-mv cred-alert-cli /usr/local/bin # <= or other directory in ${PATH}
-```
-
-[cred-alert-osx]: https://s3.amazonaws.com/cred-alert/cli/current-release/cred-alert-cli_darwin
-[cred-alert-linux]: https://s3.amazonaws.com/cred-alert/cli/current-release/cred-alert-cli_linux
-
 ## USAGE
 
 Point `core.hooksPath` at the directory you cloned this repo to:
@@ -102,14 +72,6 @@ called `add_footer`, you would:
 1. Create a file, `git-hooks-core/whitelists.d/my-whitelist` with a single entry: `/home/username/my-repo`
 1. Add an entry to git-hooks-core/whitelists: `commit-msg.d/add_footer my-whitelist`
 
-`git-hooks-core/whitelists` has been preconfigured with entries for the
-(initially empty) cred-alert whitelist in `whitelists.d`.
-
 ## LINKS
 
 * [githooks](https://git-scm.com/docs/githooks)
-
-CLI Binaries:
-
-* [OSX][cred-alert-osx]
-* [Linux][cred-alert-linux]
